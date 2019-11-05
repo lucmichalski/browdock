@@ -22,6 +22,8 @@ Instructions
 
    > Cookie: ReallyLongAlphanumericString
 
-1. ./build.sh
+1. Choose your browser 
 
-1. ./run.sh
+        cd Chrome
+        ./build.sh
+        ./run.sh
