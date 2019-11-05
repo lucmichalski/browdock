@@ -27,3 +27,10 @@ Instructions
         cd Chrome
         ./build.sh
         ./run.sh
+
+1. Cheers
+
+https://github.com/jlund/docker-chrome-pulseaudio
+https://github.com/jessfraz
+
+And google search
