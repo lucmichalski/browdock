@@ -3,7 +3,7 @@ FROM ubuntu:bionic
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN useradd chromium
+RUN groupadd -r chromium && useradd -r -g chromium -G audio,video chromium
 RUN mkdir -p /home/chromium && chown chromium:chromium /home/chromium
 
 # Packages
@@ -22,5 +22,7 @@ RUN echo '/usr/bin/chromium-browser --disable-gpu' >> /home/chromium/chromium-pu
 RUN chmod 755 /home/chromium/chromium-pulseaudio-forward
 
 COPY local.conf /etc/fonts/local.conf
+
+ENV LANG en-US
 
 ENTRYPOINT ["bash", "/home/chromium/chromium-pulseaudio-forward"]

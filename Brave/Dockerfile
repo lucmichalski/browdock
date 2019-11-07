@@ -3,7 +3,7 @@ FROM ubuntu:bionic
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN useradd brave
+RUN groupadd -r brave && useradd -r -g brave -G audio,video brave
 RUN mkdir -p /home/brave && chown brave:brave /home/brave
 
 # Packages
@@ -29,5 +29,7 @@ RUN echo '/usr/bin/brave-browser --disable-gpu' >> /home/brave/brave-pulseaudio-
 RUN chmod 755 /home/brave/brave-pulseaudio-forward
 
 COPY local.conf /etc/fonts/local.conf
+
+ENV LANG en-US
 
 ENTRYPOINT ["bash", "/home/brave/brave-pulseaudio-forward"]

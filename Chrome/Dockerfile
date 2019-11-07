@@ -3,7 +3,7 @@ FROM ubuntu:bionic
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN useradd chrome
+RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome
 RUN mkdir -p /home/chrome && chown chrome:chrome /home/chrome
 
 # Packages
@@ -29,5 +29,7 @@ RUN echo '/usr/bin/google-chrome-stable --disable-gpu' >> /home/chrome/chrome-pu
 RUN chmod 755 /home/chrome/chrome-pulseaudio-forward
 
 COPY local.conf /etc/fonts/local.conf
+
+ENV LANG en-US
 
 ENTRYPOINT ["bash", "/home/chrome/chrome-pulseaudio-forward"]
