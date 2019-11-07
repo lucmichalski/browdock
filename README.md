@@ -8,7 +8,7 @@ Instructions
 
 1. Install [PulseAudio Preferences](http://freedesktop.org/software/pulseaudio/paprefs/). Debian/Ubuntu users can do this:
 
-        sudo apt-get install paprefs
+        sudo apt-get install paprefs pulseaudio
 
 1. Launch PulseAudio Preferences, go to the "Network Server" tab, and check the "Enable network access to local sound devices" checkbox
 
@@ -24,15 +24,23 @@ Instructions
 
 1. Choose your browser for test
 
-        BROWDOCK=$(pwd)
-        export BROWDOCK
-        cd Chrome
-        ./build.sh
-        setsid ./run.sh
+        banzai@localhost:~$ cd path-to-your-clone-git
+        banzai@localhost:~/path-to-your-clone-git$ BROWDOCK=$(pwd)
+        banzai@localhost:~/path-to-your-clone-git$ export BROWDOCK
+        banzai@localhost:~/path-to-your-clone-git$ cd Chrome
+        banzai@localhost:~/path-to-your-clone-git$ ./build.sh
+        banzai@localhost:~/path-to-your-clone-git$ setsid ./run.sh
 
 1. Install all
 
-        ./install-all.sh
+        banzai@localhost:/path-to-your-clone-git$ ./install-all.sh
+
+And launch your browser in shell :
+
+        banzai@localhost:~$ chrome-docker &
+        banzai@localhost:~$ chromium-docker &
+        banzai@localhost:~$ firefox-docker &
+        banzai@localhost:~$ brave-docker &
 
 1. Cheers
 
