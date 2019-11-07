@@ -1,22 +1,21 @@
 FROM ubuntu:bionic
 
-RUN apt-get update; apt-get clean
+RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN useradd apps
-RUN mkdir -p /home/apps && chown apps:apps /home/apps
+RUN useradd firefox
+RUN mkdir -p /home/firefox && chown firefox:firefox /home/firefox
 
-# Install wget.
-RUN apt-get install -y wget gnupg pulseaudio
+# Packages
+RUN apt-get install -y apt-utils dbus-x11 libcanberra-gtk-module libcanberra-gtk3-module firefox pulseaudio
 
-# Install Chrome.
-RUN apt-get update && apt-get -y install firefox
+USER firefox
+ENV HOME /home/firefox
 
-USER apps
-ENV HOME /home/apps
+RUN echo 'export PULSE_SERVER="tcp:127.0.0.1:4713"' >> /home/firefox/firefox-pulseaudio-forward
+RUN echo '/usr/bin/firefox' >> /home/firefox/firefox-pulseaudio-forward
+RUN chmod 755 /home/firefox/firefox-pulseaudio-forward
 
-RUN echo 'export PULSE_SERVER="tcp:127.0.0.1:4713"' >> /home/apps/firefox-pulseaudio-forward
-RUN echo '/usr/bin/firefox' >> /home/apps/firefox-pulseaudio-forward
-RUN chmod 755 /home/apps/firefox-pulseaudio-forward
+COPY local.conf /etc/fonts/local.conf
 
-ENTRYPOINT ["bash", "/home/apps/firefox-pulseaudio-forward"]
+ENTRYPOINT ["bash", "/home/firefox/firefox-pulseaudio-forward"]

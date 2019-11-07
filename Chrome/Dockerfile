@@ -1,13 +1,13 @@
 FROM ubuntu:bionic
 
-RUN apt-get update; apt-get clean
+RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN useradd apps
-RUN mkdir -p /home/apps && chown apps:apps /home/apps
+RUN useradd chrome
+RUN mkdir -p /home/chrome && chown chrome:chrome /home/chrome
 
-# Install wget.
-RUN apt-get install -y wget gnupg pulseaudio
+# Packages
+RUN apt-get install -y apt-utils dbus-x11 libcanberra-gtk-module libcanberra-gtk3-module wget gnupg pulseaudio
 
 # Set the Chrome repo.
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -15,12 +15,19 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 
 # Install Chrome.
 RUN apt-get update && apt-get -y install google-chrome-stable
+RUN apt-get install -y fonts-symbola hicolor-icon-theme libgl1-mesa-dri \
+    libgl1-mesa-glx \
+    libpango1.0-0 \
+    libpulse0 \
+    libv4l-0
 
-USER apps
-ENV HOME /home/apps
+USER chrome
+ENV HOME /home/chrome
 
-RUN echo 'export PULSE_SERVER="tcp:127.0.0.1:4713"' >> /home/apps/chrome-pulseaudio-forward
-RUN echo '/usr/bin/google-chrome-stable' >> /home/apps/chrome-pulseaudio-forward
-RUN chmod 755 /home/apps/chrome-pulseaudio-forward
+RUN echo 'export PULSE_SERVER="tcp:127.0.0.1:4713"' >> /home/chrome/chrome-pulseaudio-forward
+RUN echo '/usr/bin/google-chrome-stable --disable-gpu' >> /home/chrome/chrome-pulseaudio-forward
+RUN chmod 755 /home/chrome/chrome-pulseaudio-forward
 
-ENTRYPOINT ["bash", "/home/apps/chrome-pulseaudio-forward"]
+COPY local.conf /etc/fonts/local.conf
+
+ENTRYPOINT ["bash", "/home/chrome/chrome-pulseaudio-forward"]
