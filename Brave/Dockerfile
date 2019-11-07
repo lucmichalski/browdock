@@ -3,7 +3,7 @@ FROM ubuntu:bionic
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN groupadd -r brave && useradd -r -g brave -G audio,video brave
+RUN useradd brave
 RUN mkdir -p /home/brave && chown brave:brave /home/brave
 
 # Packages

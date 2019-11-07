@@ -3,7 +3,7 @@ FROM ubuntu:bionic
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN groupadd -r chromium && useradd -r -g chromium -G audio,video chromium
+RUN useradd chromium
 RUN mkdir -p /home/chromium && chown chromium:chromium /home/chromium
 
 # Packages

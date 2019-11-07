@@ -3,7 +3,7 @@ FROM ubuntu:bionic
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN groupadd -r firefox && useradd -r -g firefox -G audio,video firefox
+RUN useradd firefox
 RUN mkdir -p /home/firefox && chown firefox:firefox /home/firefox
 
 # Packages

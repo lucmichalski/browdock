@@ -3,7 +3,7 @@ FROM ubuntu:bionic
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome
+RUN useradd chrome
 RUN mkdir -p /home/chrome && chown chrome:chrome /home/chrome
 
 # Packages
