@@ -22,33 +22,17 @@ Instructions
 
    > Cookie: ReallyLongAlphanumericString
 
-1. Choose your browser 
+1. Choose your browser for test
 
+        BROWDOCK=$(pwd)
+        export BROWDOCK
         cd Chrome
         ./build.sh
         setsid ./run.sh
 
-1. Shortcut
+1. Install all
 
-        cd Chrome
-        ln -s $(pwd)/chrome-docker /usr/local/bin/
-        chmod u+x $(pwd)/chrome-docker
-        chrome-docker
-
-        cd Chromium
-        ln -s $(pwd)/chromium-docker /usr/local/bin/
-        chmod u+x $(pwd)/chromium-docker
-        chromium-docker
-
-        cd Brave
-        ln -s $(pwd)/brave-docker /usr/local/bin/
-        chmod u+x $(pwd)/brave-docker
-        brave-docker
-
-        cd Firefox
-        ln -s $(pwd)/firefox-docker /usr/local/bin/
-        chmod u+x $(pwd)/firefox-docker
-        firefox-docker
+        ./install-all.sh
 
 1. Cheers
 

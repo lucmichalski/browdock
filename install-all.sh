@@ -1,5 +1,9 @@
 #!/bin/bash
 
+BROWDOCK=$(pwd)
+
+export BROWDOCK
+
 cd Chrome
 chmod u+x build.sh
 ./build.sh

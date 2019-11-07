@@ -1,2 +1,2 @@
 #!/bin/bash
-setsid ./run.sh
+setsid $BROWDOCK/Firefox/run.sh
