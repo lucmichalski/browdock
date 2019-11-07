@@ -8,6 +8,7 @@ RUN mkdir -p /home/firefox && chown firefox:firefox /home/firefox
 
 # Packages
 RUN apt-get install -y apt-utils dbus-x11 libcanberra-gtk-module libcanberra-gtk3-module firefox pulseaudio
+RUN apt-get install -y ffmpeg
 
 USER firefox
 ENV HOME /home/firefox

@@ -26,7 +26,29 @@ Instructions
 
         cd Chrome
         ./build.sh
-        ./run.sh
+        setsid ./run.sh
+
+1. Shortcut
+
+        cd Chrome
+        ln -s $(pwd)/chrome-docker /usr/local/bin/
+        chmod u+x $(pwd)/chrome-docker
+        chrome-docker
+
+        cd Chromium
+        ln -s $(pwd)/chromium-docker /usr/local/bin/
+        chmod u+x $(pwd)/chromium-docker
+        chromium-docker
+
+        cd Brave
+        ln -s $(pwd)/brave-docker /usr/local/bin/
+        chmod u+x $(pwd)/brave-docker
+        brave-docker
+
+        cd Firefox
+        ln -s $(pwd)/firefox-docker /usr/local/bin/
+        chmod u+x $(pwd)/firefox-docker
+        firefox-docker
 
 1. Cheers
 
