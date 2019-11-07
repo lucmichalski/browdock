@@ -15,11 +15,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 
 # Install Chrome.
 RUN apt-get update && apt-get -y install google-chrome-stable
-RUN apt-get install -y fonts-symbola hicolor-icon-theme libgl1-mesa-dri \
-    libgl1-mesa-glx \
-    libpango1.0-0 \
-    libpulse0 \
-    libv4l-0
+RUN apt-get install -y fonts-symbola libpango1.0-0 libv4l-0
 
 USER chrome
 ENV HOME /home/chrome

@@ -21,8 +21,6 @@ RUN chmod 755 /home/firefox/firefox-pulseaudio-forward
 
 COPY local.conf /etc/fonts/local.conf
 
-RUN echo 'pref("browser.tabs.remote.autostart", false);' >> /etc/firefox/syspref.js
-
 ENV LANG en-US
 
 ENTRYPOINT ["bash", "/home/firefox/firefox-pulseaudio-forward"]
