@@ -5,6 +5,7 @@ RUN apt-get update; apt-get upgrade -y; apt-get clean
 # Add a user for running applications.
 RUN groupadd -r chrome && useradd -r -s /bin/false -g chrome chrome
 RUN mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
+RUN mkdir -p /home/chrome/.local && chown chrome:chrome /home/chrome/.local
 
 # Packages
 RUN apt-get install -y apt-utils wget gnupg

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#xhost +local:root
+xhost +local:
 
 docker run -it --rm \
---user $(id -u):$(id -g) \
+--user firefox:firefox \
 --net=host --env="DISPLAY" \
 -v /dev/shm:/dev/shm \
 --device /dev/dri \
@@ -11,4 +11,4 @@ docker run -it --rm \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 firefox-docker 2>&1 >/dev/null
 
-#xhost -local:root
+xhost -local:
