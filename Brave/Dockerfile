@@ -3,7 +3,7 @@ FROM debian:sid-slim
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN useradd brave
+RUN groupadd -r brave && useradd -r -s /bin/false -g brave brave
 RUN mkdir -p /home/brave/Downloads && chown -R brave:brave /home/brave
 
 # Packages

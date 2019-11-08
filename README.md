@@ -35,12 +35,24 @@ Instructions
 
         banzai@localhost:/path-to-your-clone-git$ ./install-all.sh
 
+        echo "export BROWDOCK=\"${BROWDOCK}\"" >> ~/.bashrc
+
+        sudo nano /etc/default/docker
+        > DOCKER_OPTS="-icc=false" 
+
 And launch your browser in shell :
 
         banzai@localhost:~$ chrome-docker &
         banzai@localhost:~$ chromium-docker &
         banzai@localhost:~$ firefox-docker &
         banzai@localhost:~$ brave-docker &
+
+1. Snyk - Check for known vulnerabilities
+
+        sudo npm i npm update
+        sudo npm install -g snyk
+        snyk auth
+        snyk test --docker debian:sid-slim --file=Dockerfile
 
 1. Cheers
 

@@ -3,7 +3,7 @@ FROM debian:sid-slim
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN useradd chrome
+RUN groupadd -r chrome && useradd -r -s /bin/false -g chrome chrome
 RUN mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
 
 # Packages

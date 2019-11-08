@@ -3,13 +3,12 @@ FROM debian:sid-slim
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN useradd firefox
+RUN groupadd -r firefox && useradd -r -s /bin/false -g firefox firefox
 RUN mkdir -p /home/firefox/Downloads && chown -R firefox:firefox /home/firefox
 
 # Packages
-RUN apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module firefox pulseaudio ffmpeg fonts-noto \
-    fonts-noto-cjk \
-    fonts-noto-color-emoji --no-install-recommends
+RUN apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module firefox-esr pulseaudio ffmpeg fonts-noto \
+    fonts-noto-cjk --no-install-recommends
 
 RUN apt-get clean; apt-get autoclean
 
