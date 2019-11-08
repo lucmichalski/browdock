@@ -1,6 +1,7 @@
 #!/bin/bash
 
 docker container run -it --rm \
+--user $(id -u):$(id -g) \
 --security-opt seccomp=$BROWDOCK/Brave/chrome.json \
 --net=host --env="DISPLAY" \
 -v /dev/shm:/dev/shm \
