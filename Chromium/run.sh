@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker container run -it --rm \
---user browdock:browdock \
+--user $(id -u):$(id -g) \
 --security-opt seccomp=$BROWDOCK/Chromium/chrome.json \
 --net=host --env="DISPLAY" \
 -v /dev/shm:/dev/shm \

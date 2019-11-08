@@ -27,8 +27,6 @@ Instructions
         banzai@localhost:~$ cd path-to-your-clone-git
         banzai@localhost:~/path-to-your-clone-git$ BROWDOCK=$(pwd)
         banzai@localhost:~/path-to-your-clone-git$ export BROWDOCK
-        banzai@localhost:~/path-to-your-clone-git$ sudo groupadd -r browdock && sudo useradd -r -s /bin/false -g browdock browdock
-        banzai@localhost:~/path-to-your-clone-git$ xhost +SI:localuser:browdock
         banzai@localhost:~/path-to-your-clone-git$ cd Chrome
         banzai@localhost:~/path-to-your-clone-git$ ./build.sh
         banzai@localhost:~/path-to-your-clone-git$ setsid ./run.sh
@@ -36,11 +34,13 @@ Instructions
 1. Install all
 
         banzai@localhost:/path-to-your-clone-git$ ./install-all.sh
-
-        echo "export BROWDOCK=\"${BROWDOCK}\"" >> ~/.bashrc
-
-        sudo nano /etc/default/docker
+        banzai@localhost:/path-to-your-clone-git$ echo "export BROWDOCK=\"${BROWDOCK}\"" >> ~/.bashrc
+        
+        banzai@localhost:/path-to-your-clone-git$ sudo nano /etc/default/docker
         > DOCKER_OPTS="-icc=false" 
+
+        banzai@localhost:/path-to-your-clone-git$ xhost
+        > Check authorized user for X server
 
 And launch your browser in shell :
 

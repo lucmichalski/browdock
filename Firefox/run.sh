@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker run -it --rm \
---user browdock:browdock \
+docker container run -it --rm \
+--user $(id -u):$(id -g) \
 --net=host --env="DISPLAY" \
 -v /dev/shm:/dev/shm \
 --device /dev/dri \

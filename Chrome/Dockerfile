@@ -1,10 +1,9 @@
 FROM debian:sid-slim
 
-RUN apt-get update; apt-get upgrade -y; apt-get clean
+ARG USER_ID
+ARG GROUP_ID
 
-# Add a user for running applications.
-RUN groupadd -r browdock && useradd -r -s /bin/false -g browdock browdock
-RUN mkdir -p /home/browdock/Downloads && chown -R browdock:browdock /home/browdock
+RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Packages
 RUN apt-get install -y apt-utils wget gnupg
@@ -20,11 +19,13 @@ RUN apt-get clean; apt-get autoclean
 
 COPY local.conf /etc/fonts/local.conf
 
-USER browdock
-ENV HOME /home/browdock
-
+RUN mkdir -p /home/browdock/Downloads
 RUN echo 'export PULSE_SERVER="tcp:127.0.0.1:4713"' >> /home/browdock/chrome-pulseaudio-forward
 RUN echo '/usr/bin/google-chrome-stable --disable-gpu' >> /home/browdock/chrome-pulseaudio-forward
-RUN chmod 755 /home/browdock/chrome-pulseaudio-forward
+RUN chown -R ${USER_ID}:${GROUP_ID} /home/browdock
+
+USER ${USER_ID}
+
+ENV HOME /home/browdock
 
 ENTRYPOINT ["bash", "/home/browdock/chrome-pulseaudio-forward"]

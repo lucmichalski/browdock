@@ -3,9 +3,6 @@
 BROWDOCK=$(pwd)
 export BROWDOCK
 
-sudo groupadd -r browdock && sudo useradd -r -s /bin/false -g browdock browdock
-xhost +SI:localuser:browdock
-
 cd Chrome
 chmod u+x build.sh run.sh
 ./build.sh
