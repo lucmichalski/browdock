@@ -26,6 +26,4 @@ RUN chmod 755 /home/brave/brave-pulseaudio-forward
 
 COPY local.conf /etc/fonts/local.conf
 
-ENV LANG en-US
-
 ENTRYPOINT ["bash", "/home/brave/brave-pulseaudio-forward"]

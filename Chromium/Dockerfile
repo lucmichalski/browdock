@@ -19,6 +19,4 @@ RUN chmod 755 /home/chromium/chromium-pulseaudio-forward
 
 COPY local.conf /etc/fonts/local.conf
 
-ENV LANG en-US
-
 ENTRYPOINT ["bash", "/home/chromium/chromium-pulseaudio-forward"]
