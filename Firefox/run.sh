@@ -1,14 +1,10 @@
 #!/bin/bash
 
-xhost +local:
-
 docker run -it --rm \
---user firefox:firefox \
+--user browdock:browdock \
 --net=host --env="DISPLAY" \
 -v /dev/shm:/dev/shm \
 --device /dev/dri \
--v $HOME/Downloads:/home/firefox/Downloads \
+-v $HOME/Downloads:/home/browdock/Downloads \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 firefox-docker 2>&1 >/dev/null
-
-xhost -local:

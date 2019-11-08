@@ -22,11 +22,13 @@ Instructions
 
    > Cookie: ReallyLongAlphanumericString
 
-1. Choose your browser for test
+1. Choose one browser
 
         banzai@localhost:~$ cd path-to-your-clone-git
         banzai@localhost:~/path-to-your-clone-git$ BROWDOCK=$(pwd)
         banzai@localhost:~/path-to-your-clone-git$ export BROWDOCK
+        banzai@localhost:~/path-to-your-clone-git$ sudo groupadd -r browdock && sudo useradd -r -s /bin/false -g browdock browdock
+        banzai@localhost:~/path-to-your-clone-git$ xhost +SI:localuser:browdock
         banzai@localhost:~/path-to-your-clone-git$ cd Chrome
         banzai@localhost:~/path-to-your-clone-git$ ./build.sh
         banzai@localhost:~/path-to-your-clone-git$ setsid ./run.sh

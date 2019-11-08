@@ -3,9 +3,8 @@ FROM debian:sid-slim
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
-RUN groupadd -r chrome && useradd -r -s /bin/false -g chrome chrome
-RUN mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
-RUN mkdir -p /home/chrome/.local && chown chrome:chrome /home/chrome/.local
+RUN groupadd -r browdock && useradd -r -s /bin/false -g browdock browdock
+RUN mkdir -p /home/browdock/Downloads && chown -R browdock:browdock /home/browdock
 
 # Packages
 RUN apt-get install -y apt-utils wget gnupg
@@ -21,11 +20,11 @@ RUN apt-get clean; apt-get autoclean
 
 COPY local.conf /etc/fonts/local.conf
 
-USER chrome
-ENV HOME /home/chrome
+USER browdock
+ENV HOME /home/browdock
 
-RUN echo 'export PULSE_SERVER="tcp:127.0.0.1:4713"' >> /home/chrome/chrome-pulseaudio-forward
-RUN echo '/usr/bin/google-chrome-stable --disable-gpu' >> /home/chrome/chrome-pulseaudio-forward
-RUN chmod 755 /home/chrome/chrome-pulseaudio-forward
+RUN echo 'export PULSE_SERVER="tcp:127.0.0.1:4713"' >> /home/browdock/chrome-pulseaudio-forward
+RUN echo '/usr/bin/google-chrome-stable --disable-gpu' >> /home/browdock/chrome-pulseaudio-forward
+RUN chmod 755 /home/browdock/chrome-pulseaudio-forward
 
-ENTRYPOINT ["bash", "/home/chrome/chrome-pulseaudio-forward"]
+ENTRYPOINT ["bash", "/home/browdock/chrome-pulseaudio-forward"]
