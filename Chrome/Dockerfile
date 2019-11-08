@@ -1,21 +1,22 @@
-FROM ubuntu:bionic
+FROM debian:sid-slim
 
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
 RUN useradd chrome
-RUN mkdir -p /home/chrome && chown chrome:chrome /home/chrome
+RUN mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
 
 # Packages
-RUN apt-get install -y apt-utils dbus-x11 libcanberra-gtk-module libcanberra-gtk3-module wget gnupg pulseaudio
+RUN apt-get install -y apt-utils wget gnupg
 
 # Set the Chrome repo.
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 
 # Install Chrome.
-RUN apt-get update && apt-get -y install google-chrome-stable
-RUN apt-get install -y fonts-symbola libpango1.0-0 libv4l-0
+RUN apt-get update && apt-get -y install libcanberra-gtk-module libcanberra-gtk3-module google-chrome-stable pulseaudio fonts-symbola libpango1.0-0 libv4l-0 --no-install-recommends
+
+RUN apt-get clean; apt-get autoclean
 
 USER chrome
 ENV HOME /home/chrome

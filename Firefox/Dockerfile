@@ -1,16 +1,17 @@
-FROM ubuntu:bionic
+FROM debian:sid-slim
 
 RUN apt-get update; apt-get upgrade -y; apt-get clean
 
 # Add a user for running applications.
 RUN useradd firefox
-RUN mkdir -p /home/firefox && chown firefox:firefox /home/firefox
+RUN mkdir -p /home/firefox/Downloads && chown -R firefox:firefox /home/firefox
 
 # Packages
-RUN apt-get install -y apt-utils dbus-x11 libcanberra-gtk-module libcanberra-gtk3-module firefox pulseaudio
-RUN apt-get install -y ffmpeg fonts-noto \
+RUN apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module firefox pulseaudio ffmpeg fonts-noto \
     fonts-noto-cjk \
-    fonts-noto-color-emoji
+    fonts-noto-color-emoji --no-install-recommends
+
+RUN apt-get clean; apt-get autoclean
 
 USER firefox
 ENV HOME /home/firefox
