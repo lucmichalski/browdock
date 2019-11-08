@@ -13,13 +13,13 @@ RUN apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module firefox pu
 
 RUN apt-get clean; apt-get autoclean
 
+COPY local.conf /etc/fonts/local.conf
+
 USER firefox
 ENV HOME /home/firefox
 
 RUN echo 'export PULSE_SERVER="tcp:127.0.0.1:4713"' >> /home/firefox/firefox-pulseaudio-forward
 RUN echo '/usr/bin/firefox' >> /home/firefox/firefox-pulseaudio-forward
 RUN chmod 755 /home/firefox/firefox-pulseaudio-forward
-
-COPY local.conf /etc/fonts/local.conf
 
 ENTRYPOINT ["bash", "/home/firefox/firefox-pulseaudio-forward"]

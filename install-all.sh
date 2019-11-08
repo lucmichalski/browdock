@@ -37,3 +37,5 @@ chmod u+x $(pwd)/firefox-docker
 firefox-docker
 
 cd ..
+
+#echo "export BROWDOCK=\"${BROWDOCK}\"" >> ~/.bashrc

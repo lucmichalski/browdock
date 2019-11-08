@@ -18,13 +18,13 @@ RUN apt-get update && apt-get -y install libcanberra-gtk-module libcanberra-gtk3
 
 RUN apt-get clean; apt-get autoclean
 
+COPY local.conf /etc/fonts/local.conf
+
 USER brave
 ENV HOME /home/brave
 
 RUN echo 'export PULSE_SERVER="tcp:127.0.0.1:4713"' >> /home/brave/brave-pulseaudio-forward
 RUN echo '/usr/bin/brave-browser --disable-gpu' >> /home/brave/brave-pulseaudio-forward
 RUN chmod 755 /home/brave/brave-pulseaudio-forward
-
-COPY local.conf /etc/fonts/local.conf
 
 ENTRYPOINT ["bash", "/home/brave/brave-pulseaudio-forward"]
